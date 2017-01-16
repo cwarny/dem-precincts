@@ -17,11 +17,11 @@ with open('data/data.csv', 'w', newline='') as csvout, open('data/data.json','w'
 		if 'precincts' in link['href']:
 			precinct_url = 'http://%s%s' % (host, link['href'])
 			res = requests.get(precinct_url)
-			s = BeautifulSoup(res, 'html.parser')
+			s = BeautifulSoup(res.content, 'html.parser')
 			code = s.find('h1').text.strip().split(' ')[1]
 			d = {
 				dt.text[:-1]: get_sibling(dt).text.strip()
-				for dl in s('dl')
+				for dl in s('dl')[:2]
 				for dt in dl('dt')
 			}
 			d['code'] = code
