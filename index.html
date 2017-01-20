@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Wake Precincts</title>
+	<style type="text/css">
+		.precincts {
+			fill: none;
+			stroke: black;
+		}
+	</style>
+</head>
+<body>
+	<svg></svg>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script>
+	<script src="https://d3js.org/topojson.v2.min.js"></script>
+	<script type="text/javascript">
+		let svg = d3.select('svg');
+		let width = 1000, height = 1000;
+
+		svg.attr('viewBox', `0 0 ${width} ${height}`)
+
+		let projection = d3.geoConicConformal()
+			.parallels([34 + 20 / 60, 36 + 10 / 60])
+			.rotate([79, -33 - 45 / 60]);
+
+		let path = d3.geoPath();
+
+		d3.json('data/wake-quantized-topo.json', (error, wake) => {
+			if (error) throw error;
+			let t = topojson.feature(wake, wake.objects.precincts);
+
+			// projection.fitSize([width,height], t);
+			
+			// path.projection(projection);
+
+			svg.append('g')
+				.attr('class', 'precincts')
+				.selectAll('path')
+				.data(t.features)
+				.enter().append('path')
+				.attr('d', path);
+		});
+	</script>
+</body>
+</html>
