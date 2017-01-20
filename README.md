@@ -12,6 +12,7 @@ App allowing people to get info on their democratic precincts
 * [topojson](https://github.com/topojson/topojson)
 * [jq](https://stedolan.github.io/jq/)
 * [Python 3](http://www.python.org)
+* [GDAL](http://www.gdal.org/index.html). To install on Mac OS: `brew install gdal`
 
 ## Installation
 
