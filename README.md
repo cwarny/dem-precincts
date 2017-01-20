@@ -6,7 +6,11 @@ App allowing people to get info on their democratic precincts
 
 * [Git](https://git-scm.com/)
 * [Node.js](https://nodejs.org/) (with NPM)
-* `npm install -g shapefile d3-geo-projection ndjson-cli topojson`
+* [Shapefile parser](https://github.com/mbostock/shapefile)
+* [d3-geo-projection](https://github.com/d3/d3-geo-projection)
+* [ndjson-cli](https://github.com/mbostock/ndjson-cli)
+* [topojson](https://github.com/topojson/topojson)
+* [jq](https://stedolan.github.io/jq/)
 * [Python 3](http://www.python.org)
 
 ## Installation
