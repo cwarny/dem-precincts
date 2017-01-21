@@ -27,7 +27,7 @@ with open('data/data.json','w',newline='') as jsonout:
 			d['code'] = code
 			d['events'] = [
 				{ 
-					dt.text: get_sibling(dt).text.strip()
+					dt.text[:-1]: get_sibling(dt).text.strip()
 					for dt in dl('dt')
 				}
 				for dl in s('dl')[2:]

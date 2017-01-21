@@ -1,0 +1,10 @@
+<g>
+	{{#each shapes as |shape|}}
+		{{geo-shape d=shape.path 
+			entity=shape.props
+			onhighlight=onhighlight
+			ondehighlight=ondehighlight
+			onselect=onselect
+			ondeselect=ondeselect}}
+	{{/each}}
+</g>
