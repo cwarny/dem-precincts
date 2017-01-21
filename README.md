@@ -46,6 +46,9 @@ App allowing people to get info on their democratic precincts
 
 ### Geo
 
+* Download polling places shapefiles: 
+	* `curl ftp://wakeftp.co.wake.nc.us/GIS/Webdownloads/SHAPEFILES/Wake_PollingPlaces_2016_09.zip -o data/Wake_PollingPlaces_2016_09.zip`
+	* `unzip data/Wake_PollingPlaces_2016_09.zip -d data`
 * Download precincts shapefiles: 
 	* Just Wake county:
 		* `curl ftp://wakeftp.co.wake.nc.us/GIS/WebDownloads/SHAPEFILES/Wake_Precincts_2015_11.zip -o data/Wake_Precincts_2015_11.zip`
@@ -70,5 +73,47 @@ App allowing people to get info on their democratic precincts
 	* `toposimplify -p 1 -f < data/wake-precincts-topo.json > data/wake-simple-topo.json`
 	* `topoquantize 1e5 < data/wake-simple-topo.json > data/wake-quantized-topo.json`
 
+### [Google Civic Information API](https://developers.google.com/civic-information)
 
+This API surfaces data collected through the [Open Civic Data](https://github.com/opencivicdata) project, which standardizes information about elections, governmental divisions, and elected representatives. This may be especially useful for getting info on elected representatives at many different levels, such as:
 
+* State House districts (for state-level House of Representatives elections): `ocd-division/country:us/state:nc/sldl:<id>`
+* State Senate districts (for state-level Senate elections): `ocd-division/country:us/state:nc/sldu:<id>`
+* Board of Commissioners districts (for county-level Board of Commissioners elections): `ocd-division/country:us/state:nc/county:wake/council_district:<id>`
+* Congressional districts: `ocd-division/country:us/state:nc/cd:<id>`
+* Court districts: `ocd-division/country:us/state:nc/district_court:<id>`
+* School Board districts: `ocd-division/country:us/state:nc/county:wake/school_board_district:<id>`
+* State: `ocd-division/country:us/state:nc`
+* County: `ocd-division/country:us/state:nc/county:wake`
+* City: `ocd-division/country:us/state:nc/place:<city>`
+
+The boundaries of these districts do *not* necessary follow precincts boundaries. When it's not the case, that's when we have so-called a *split precincts* situation, which are a normal outcome of the *redistricting* process. 
+
+> [In such split precincts], voters don’t all vote for the same offices. For example, some voters in the precinct might vote for a representative to fill state senate seat A, while other voters, in the same precinct, vote for a representative to fill state senate seat B. Precincts can also be split more than once (once by a concessional district line and once more by a state senate line, for instance). It’s like having multiple precincts in one.
+[Source](http://electls.blogs.wm.edu/2012/01/25/va-split-precincts-a-state-divided/)
+
+For a full list of NC precincts OCD division ids go [here](https://github.com/opencivicdata/ocd-division-ids/blob/master/identifiers/country-us/state-nc-precincts.csv).
+
+TODO: Merge geo shape data of all the different voting districts with their OCD division id. That way, when we search by any specific subdivision level, we can use a geo shape query to find with which other subdivisions it intersects, and surface that information as well.
+
+## Search
+
+We want to support two types of search.
+
+### Search by address
+
+Type an address in an input field (with autocomplete feature) and highlight the precinct in which that address falls. In Elasticsearch this translates in a point `geo_shape` query against documents with a `geometry` field indexed as type `geo_shape`. See [this Stackoverflow Q&A](http://stackoverflow.com/questions/31448745/match-a-geoshape-polygon-document-with-a-geopoint-query-in-elasticsearch) for more details.
+
+### Search by person
+
+Type a person's name in an input field (with autocomplete feature) and show information about that person.
+
+### Search by precinct
+
+Return all other governmental subdivisions that intersect with a given precinct. These returned subdivisions should contain their OCD subdivision ids so that we can query the Google Civic Information API. We want to be able to select a precinct and show all the voting districts it intersects with.
+
+## Design
+
+* Allow user to split the map by any subdivision: precinct, or any of the electoral districts.
+* On mouse over: show basic info about that subdivision
+* On click: zoom on that subdivision and list other intersecting subdivisions. When mousing over that list of intersecting subdivisions, show the intersecting lines on map

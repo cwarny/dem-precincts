@@ -1,0 +1,29 @@
+.title {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 50px;
+}
+
+path.precinct {
+	stroke: white;
+	stroke-width: 0.1px;
+}
+
+path.precinct.highlighted {
+	stroke: red;
+	stroke-width: 1px;
+}
+
+.clickable {
+	cursor: pointer;
+}
+
+path.entity {
+	stroke: white;
+	fill: #cccccc;
+	stroke-width: 0.1px;
+}
+
+path.entity.highlighted {
+	stroke: red;
+	stroke-width: 1px;
+}
