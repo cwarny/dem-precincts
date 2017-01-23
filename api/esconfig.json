@@ -1,0 +1,173 @@
+{
+	"mappings": {
+		"voter": {
+			"county": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					}
+				}
+			},
+			"reg_num": {
+				"type": "string"
+			},
+			"status": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"reason": {
+						"type": "string"
+					}
+				}
+			},
+			"name": {
+				"properties": {
+					"first": {
+						"type": "string"
+					},
+					"last": {
+						"type": "string"
+					},
+					"middle": {
+						"type": "string"
+					},
+					"suffix": {
+						"type": "string"
+					}
+				}
+			},
+			"address": {
+				"properties": {
+					"residence": {
+						"properties": {
+							"street": {
+								"type": "string"
+							},
+							"city": {
+								"type": "string"
+							},
+							"state": {
+								"type": "string"
+							},
+							"zip": {
+								"type": "string"
+							}
+						}
+					},
+					"mail": {
+						"properties": {
+							"addr1": {
+								"type": "string"
+							},
+							"addr2": {
+								"type": "string"
+							},
+							"addr3": {
+								"type": "string"
+							},
+							"addr4": {
+								"type": "string"
+							},
+							"city": {
+								"type": "string"
+							},
+							"state": {
+								"type": "string"
+							},
+							"zip": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			},
+			"phone_number": {
+				"type": "string"
+			},
+			"race": {
+				"type": "string"
+			},
+			"ethnicity": {
+				"type": "string"
+			},
+			"party": {
+				"type": "string"
+			},
+			"gender": {
+				"type": "string"
+			},
+			"age": {
+				"type": "integer"
+			},
+			"birth_state": {
+				"type": "string"
+			},
+			"drivers_lic": {
+				"type": "string"
+			},
+			"registration_date": {
+				"type": "date"
+			},
+			"precinct": {
+				"type": "string"
+			},
+			"municipality": {
+				"type": "string"
+			},
+			"ward": {
+				"type": "string"
+			},
+			"cong_dist": {
+				"type": "string"
+			},
+			"super_court_dist": {
+				"type": "string"
+			},
+			"judic_dist": {
+				"type": "string"
+			},
+			"nc_senate_dist": {
+				"type": "string"
+			},
+			"nc_house_dist": {
+				"type": "string"
+			},
+			"county_commiss_dist": {
+				"type": "string"
+			},
+			"township": {
+				"type": "string"
+			},
+			"boe_dist": {
+				"type": "string"
+			},
+			"fire_dist": {
+				"type": "string"
+			},
+			"water_dist": {
+				"type": "string"
+			},
+			"sewer_dist": {
+				"type": "string"
+			},
+			"sanit_dist": {
+				"type": "string"
+			},
+			"rescue_dist": {
+				"type": "string"
+			},
+			"munic_dist": {
+				"type": "string"
+			}
+		},
+		"subdivision": {
+			"type": {
+				"type": "string"
+			}
+		}
+	}
+}

@@ -83,9 +83,11 @@ This API surfaces data collected through the [Open Civic Data](https://github.co
 * Congressional districts: `ocd-division/country:us/state:nc/cd:<id>`
 * Court districts: `ocd-division/country:us/state:nc/district_court:<id>`
 * School Board districts: `ocd-division/country:us/state:nc/county:wake/school_board_district:<id>`
+* Superior Court districts: `ocd-division/country:us/state:nc/superior_court:<id>`
 * State: `ocd-division/country:us/state:nc`
 * County: `ocd-division/country:us/state:nc/county:wake`
 * City: `ocd-division/country:us/state:nc/place:<city>`
+* Precincts: `ocd-division/country:us/state:nc/county:wake/precinct:1-01`
 
 The boundaries of these districts do *not* necessary follow precincts boundaries. When it's not the case, that's when we have so-called a *split precincts* situation, which are a normal outcome of the *redistricting* process. 
 
@@ -95,6 +97,10 @@ The boundaries of these districts do *not* necessary follow precincts boundaries
 For a full list of NC precincts OCD division ids go [here](https://github.com/opencivicdata/ocd-division-ids/blob/master/identifiers/country-us/state-nc-precincts.csv).
 
 TODO: Merge geo shape data of all the different voting districts with their OCD division id. That way, when we search by any specific subdivision level, we can use a geo shape query to find with which other subdivisions it intersects, and surface that information as well.
+
+### [Google Geocoding API](https://developers.google.com/maps/documentation/javascript/geocoding)
+
+* Bounding box of Wake county: `[[36.076443, -78.995059], [35.519296, -78.253711]]` ([source](https://www.maptechnica.com/county-map/Wake/NC/37183)). This is useful to restrict geocoding requests to a bounding box in the Google Geocoding API. 
 
 ## Search
 
@@ -114,6 +120,4 @@ Return all other governmental subdivisions that intersect with a given precinct.
 
 ## Design
 
-* Allow user to split the map by any subdivision: precinct, or any of the electoral districts.
-* On mouse over: show basic info about that subdivision
-* On click: zoom on that subdivision and list other intersecting subdivisions. When mousing over that list of intersecting subdivisions, show the intersecting lines on map
+![Sketch](/images/sketch.png)
