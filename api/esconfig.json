@@ -4,39 +4,46 @@
 			"county": {
 				"properties": {
 					"id": {
-						"type": "string"
+						"type": "keyword"
 					},
 					"name": {
-						"type": "string"
+						"type": "keyword"
 					}
 				}
 			},
 			"reg_num": {
-				"type": "string"
+				"type": "keyword"
 			},
 			"status": {
 				"properties": {
 					"name": {
-						"type": "string"
+						"type": "keyword"
 					},
 					"reason": {
-						"type": "string"
+						"type": "keyword"
 					}
 				}
 			},
 			"name": {
 				"properties": {
 					"first": {
-						"type": "string"
+						"type": "keyword",
+						"copy_to": "full"
 					},
 					"last": {
-						"type": "string"
+						"type": "keyword",
+						"copy_to": "full"
 					},
 					"middle": {
-						"type": "string"
+						"type": "keyword",
+						"copy_to": "full"
 					},
 					"suffix": {
-						"type": "string"
+						"type": "keyword",
+						"copy_to": "full"
+					},
+					"full": {
+						"type": "text"
 					}
 				}
 			},
@@ -45,128 +52,132 @@
 					"residence": {
 						"properties": {
 							"street": {
-								"type": "string"
+								"type": "keyword"
 							},
 							"city": {
-								"type": "string"
+								"type": "keyword"
 							},
 							"state": {
-								"type": "string"
+								"type": "keyword"
 							},
 							"zip": {
-								"type": "string"
+								"type": "keyword"
 							}
 						}
 					},
 					"mail": {
 						"properties": {
 							"addr1": {
-								"type": "string"
+								"type": "keyword"
 							},
 							"addr2": {
-								"type": "string"
+								"type": "keyword"
 							},
 							"addr3": {
-								"type": "string"
+								"type": "keyword"
 							},
 							"addr4": {
-								"type": "string"
+								"type": "keyword"
 							},
 							"city": {
-								"type": "string"
+								"type": "keyword"
 							},
 							"state": {
-								"type": "string"
+								"type": "keyword"
 							},
 							"zip": {
-								"type": "string"
+								"type": "keyword"
 							}
 						}
 					}
 				}
 			},
 			"phone_number": {
-				"type": "string"
+				"type": "keyword"
 			},
 			"race": {
-				"type": "string"
+				"type": "keyword"
 			},
 			"ethnicity": {
-				"type": "string"
+				"type": "keyword"
 			},
 			"party": {
-				"type": "string"
+				"type": "keyword"
 			},
 			"gender": {
-				"type": "string"
+				"type": "keyword"
 			},
 			"age": {
 				"type": "integer"
 			},
 			"birth_state": {
-				"type": "string"
+				"type": "keyword"
 			},
 			"drivers_lic": {
-				"type": "string"
+				"type": "keyword"
 			},
 			"registration_date": {
-				"type": "date"
+				"type": "date",
+				"format": "MM/dd/yyyy"
 			},
 			"precinct": {
-				"type": "string"
+				"type": "keyword"
 			},
 			"municipality": {
-				"type": "string"
+				"type": "keyword"
 			},
 			"ward": {
-				"type": "string"
+				"type": "keyword"
 			},
 			"cong_dist": {
-				"type": "string"
+				"type": "keyword"
 			},
 			"super_court_dist": {
-				"type": "string"
+				"type": "keyword"
 			},
 			"judic_dist": {
-				"type": "string"
+				"type": "keyword"
 			},
 			"nc_senate_dist": {
-				"type": "string"
+				"type": "keyword"
 			},
 			"nc_house_dist": {
-				"type": "string"
+				"type": "keyword"
 			},
 			"county_commiss_dist": {
-				"type": "string"
+				"type": "keyword"
 			},
 			"township": {
-				"type": "string"
+				"type": "keyword"
 			},
 			"boe_dist": {
-				"type": "string"
+				"type": "keyword"
 			},
 			"fire_dist": {
-				"type": "string"
+				"type": "keyword"
 			},
 			"water_dist": {
-				"type": "string"
+				"type": "keyword"
 			},
 			"sewer_dist": {
-				"type": "string"
+				"type": "keyword"
 			},
 			"sanit_dist": {
-				"type": "string"
+				"type": "keyword"
 			},
 			"rescue_dist": {
-				"type": "string"
+				"type": "keyword"
 			},
 			"munic_dist": {
-				"type": "string"
+				"type": "keyword"
 			}
 		},
 		"subdivision": {
-			"type": {
-				"type": "string"
+			"ocd_type": {
+				"type": "keyword"
+			},
+			"geometry": {
+				"type": "geo_shape"
 			}
 		}
 	}

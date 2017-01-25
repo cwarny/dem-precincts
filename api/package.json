@@ -1,0 +1,13 @@
+{
+	"name": "dem-precincts-api",
+	"version": "0.0.0",
+	"description": "App allowing people to get info on their democratic precincts",
+	"scripts": {
+		"start": "node index.js"
+	},
+	"author": "Cedric Warny",
+	"license": "MIT",
+	"dependencies": {
+		
+	}
+}
