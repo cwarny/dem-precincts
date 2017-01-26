@@ -1,230 +1,226 @@
 {
 	"mappings": {
 		"voter": {
-			"county": {
-				"properties": {
-					"id": {
-						"type": "keyword"
-					},
-					"name": {
-						"type": "keyword"
-					}
-				}
-			},
-			"regNum": {
-				"type": "keyword"
-			},
-			"status": {
-				"properties": {
-					"name": {
-						"type": "keyword"
-					},
-					"reason": {
-						"type": "keyword"
-					}
-				}
-			},
-			"name": {
-				"properties": {
-					"first": {
-						"type": "keyword",
-						"copy_to": "full"
-					},
-					"last": {
-						"type": "keyword",
-						"copy_to": "full"
-					},
-					"middle": {
-						"type": "keyword",
-						"copy_to": "full"
-					},
-					"suffix": {
-						"type": "keyword",
-						"copy_to": "full"
-					},
-					"full": {
-						"type": "text"
-					}
-				}
-			},
-			"address": {
-				"properties": {
-					"residence": {
-						"properties": {
-							"street": {
-								"type": "keyword"
-							},
-							"city": {
-								"type": "keyword"
-							},
-							"state": {
-								"type": "keyword"
-							},
-							"zip": {
-								"type": "keyword"
-							}
-						}
-					},
-					"mail": {
-						"properties": {
-							"addr1": {
-								"type": "keyword"
-							},
-							"addr2": {
-								"type": "keyword"
-							},
-							"addr3": {
-								"type": "keyword"
-							},
-							"addr4": {
-								"type": "keyword"
-							},
-							"city": {
-								"type": "keyword"
-							},
-							"state": {
-								"type": "keyword"
-							},
-							"zip": {
-								"type": "keyword"
-							}
+			"_all": { "enabled": false },
+			"properties": {
+				"county": {
+					"properties": {
+						"id": {
+							"type": "keyword"
+						},
+						"name": {
+							"type": "keyword"
 						}
 					}
+				},
+				"regNum": {
+					"type": "keyword"
+				},
+				"status": {
+					"properties": {
+						"name": {
+							"type": "keyword"
+						},
+						"reason": {
+							"type": "keyword"
+						}
+					}
+				},
+				"name": {
+					"properties": {
+						"first": {
+							"type": "keyword",
+							"copy_to": "full"
+						},
+						"last": {
+							"type": "keyword",
+							"copy_to": "full"
+						},
+						"middle": {
+							"type": "keyword",
+							"copy_to": "full"
+						},
+						"suffix": {
+							"type": "keyword",
+							"copy_to": "full"
+						},
+						"full": {
+							"type": "text"
+						}
+					}
+				},
+				"address": {
+					"properties": {
+						"residence": {
+							"properties": {
+								"street": {
+									"type": "keyword"
+								},
+								"city": {
+									"type": "keyword"
+								},
+								"state": {
+									"type": "keyword"
+								},
+								"zip": {
+									"type": "keyword"
+								}
+							}
+						},
+						"mail": {
+							"properties": {
+								"addr1": {
+									"type": "keyword"
+								},
+								"addr2": {
+									"type": "keyword"
+								},
+								"addr3": {
+									"type": "keyword"
+								},
+								"addr4": {
+									"type": "keyword"
+								},
+								"city": {
+									"type": "keyword"
+								},
+								"state": {
+									"type": "keyword"
+								},
+								"zip": {
+									"type": "keyword"
+								}
+							}
+						}
+					}
+				},
+				"phoneNumber": {
+					"type": "keyword"
+				},
+				"race": {
+					"type": "keyword"
+				},
+				"ethnicity": {
+					"type": "keyword"
+				},
+				"party": {
+					"type": "keyword"
+				},
+				"gender": {
+					"type": "keyword"
+				},
+				"age": {
+					"type": "integer"
+				},
+				"birthState": {
+					"type": "keyword"
+				},
+				"driversLic": {
+					"type": "keyword"
+				},
+				"registrationDate": {
+					"type": "date",
+					"format": "MM/dd/yyyy"
+				},
+				"precinct": {
+					"type": "keyword"
+				},
+				"municipality": {
+					"type": "keyword"
+				},
+				"ward": {
+					"type": "keyword"
+				},
+				"cong": {
+					"type": "keyword"
+				},
+				"superCourt": {
+					"type": "keyword"
+				},
+				"judic": {
+					"type": "keyword"
+				},
+				"senate": {
+					"type": "keyword"
+				},
+				"house": {
+					"type": "keyword"
+				},
+				"council": {
+					"type": "keyword"
+				},
+				"boe": {
+					"type": "keyword"
 				}
-			},
-			"phoneNumber": {
-				"type": "keyword"
-			},
-			"race": {
-				"type": "keyword"
-			},
-			"ethnicity": {
-				"type": "keyword"
-			},
-			"party": {
-				"type": "keyword"
-			},
-			"gender": {
-				"type": "keyword"
-			},
-			"age": {
-				"type": "integer"
-			},
-			"birthState": {
-				"type": "keyword"
-			},
-			"driversLic": {
-				"type": "keyword"
-			},
-			"registrationDate": {
-				"type": "date",
-				"format": "MM/dd/yyyy"
-			},
-			"precinct": {
-				"type": "keyword"
-			},
-			"municipality": {
-				"type": "keyword"
-			},
-			"ward": {
-				"type": "keyword"
-			},
-			"congDist": {
-				"type": "keyword"
-			},
-			"superCourtDist": {
-				"type": "keyword"
-			},
-			"judicDist": {
-				"type": "keyword"
-			},
-			"ncSenateDist": {
-				"type": "keyword"
-			},
-			"ncHouseDist": {
-				"type": "keyword"
-			},
-			"countyCommissDist": {
-				"type": "keyword"
-			},
-			"township": {
-				"type": "keyword"
-			},
-			"boeDist": {
-				"type": "keyword"
-			},
-			"fireDist": {
-				"type": "keyword"
-			},
-			"waterDist": {
-				"type": "keyword"
-			},
-			"sewerDist": {
-				"type": "keyword"
-			},
-			"sanitDist": {
-				"type": "keyword"
-			},
-			"rescueDist": {
-				"type": "keyword"
-			},
-			"municDist": {
-				"type": "keyword"
+			}
+		},
+		"precinct": {
+			"_all": { "enabled": false },
+			"properties": {
+				"ocdType": {
+					"type": "keyword"
+				},
+				"geometry": {
+					"type": "geo_shape"
+				},
+				"chair": {
+					"type": "keyword"
+				},
+				"county": {
+					"type": "keyword"
+				},
+				"numberOfDelegates": {
+					"type": "integer"
+				},
+				"district": {
+					"type": "keyword"
+				},
+				"pollingPlace": {
+					"type": "keyword"
+				},
+				"secretary": {
+					"type": "keyword"
+				},
+				"status": {
+					"type": "keyword"
+				},
+				"fundGoal": {
+					"type": "float"
+				},
+				"viceChair": {
+					"type": "keyword"
+				},
+				"events": {
+					"properties": {
+						"location": {
+							"properties": {
+								"name": {
+									"type": "keyword"
+								},
+								"address": {
+									"type": "keyword"
+								}
+							}
+						},
+						"date": {
+							"type": "date",
+							"format": "E, M d, y at K:m a"
+						},
+						"title": {
+							"type": "keyword"
+						}
+					}
+				}
 			}
 		},
 		"subdivision": {
-			"ocdType": {
-				"type": "keyword"
-			},
-			"geometry": {
-				"type": "geo_shape"
-			},
-			"chair": {
-				"type": "keyword"
-			},
-			"county": {
-				"type": "keyword"
-			},
-			"numberOfDelegates": {
-				"type": "integer"
-			},
-			"district": {
-				"type": "keyword"
-			},
-			"pollingPlace": {
-				"type": "keyword"
-			},
-			"secretary": {
-				"type": "keyword"
-			},
-			"status": {
-				"type": "keyword"
-			},
-			"fundGoal": {
-				"type": "float"
-			},
-			"viceChair": {
-				"type": "keyword"
-			},
-			"events": {
-				"properties": {
-					"location": {
-						"properties": {
-							"name": {
-								"type": "keyword"
-							},
-							"address": {
-								"type": "keyword"
-							}
-						}
-					},
-					"date": {
-						"type": "date",
-						"format": "E, M d, y at K:m a"
-					},
-					"title": {
-						"type": "keyword"
-					}
+			"_all": { "enabled": false },
+			"properties": {
+				"ocdType": {
+					"type": "keyword"
+				},
+				"geometry": {
+					"type": "geo_shape"
 				}
 			}
 		}
