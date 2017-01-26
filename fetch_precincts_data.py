@@ -12,7 +12,7 @@ r = requests.get(root_url)
 
 soup = BeautifulSoup(r.content, 'html.parser')
 
-with open('data/data.json','w',newline='') as jsonout:
+with open('data/precincts_data.ndjson','w',newline='') as jsonout:
 	for link in soup('a'):
 		if 'precincts' in link['href']:
 			precinct_url = 'http://%s%s' % (host, link['href'])
@@ -32,4 +32,5 @@ with open('data/data.json','w',newline='') as jsonout:
 				}
 				for dl in s('dl')[2:]
 			]
+
 			jsonout.write(json.dumps(d) + '\n')
