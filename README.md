@@ -71,7 +71,7 @@ App allowing people to get info on their democratic precincts
 		* Open in browser
 	* Convert from JSON to newline-delimited JSON (NDJSON) to merge with precinct data:
 		* `jq -c '.features | .[]' < data/wake-conformal.json > data/wake-conformal.ndjson`
-		* `ndjson-join 'd.code' 'd.properties.PRECINCT' data/data.json data/wake-conformal.ndjson > data/wake-join.ndjson`
+		* `ndjson-join 'd.code' 'd.properties.PRECINCT' data/precincts_data.ndjson data/wake-conformal.ndjson > data/wake-join.ndjson`
 		* `jq -c '.[1].properties = .[0] | .[1]' data/wake-join.ndjson > data/wake-data.ndjson`
 		* `geo2topo -n precincts=data/wake-data.ndjson > data/wake-precincts-topo.json`
 		* `toposimplify -p 1 -f < data/wake-precincts-topo.json > data/wake-simple-topo.json`

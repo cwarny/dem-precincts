@@ -11,7 +11,7 @@
 					}
 				}
 			},
-			"reg_num": {
+			"regNum": {
 				"type": "keyword"
 			},
 			"status": {
@@ -92,7 +92,7 @@
 					}
 				}
 			},
-			"phone_number": {
+			"phoneNumber": {
 				"type": "keyword"
 			},
 			"race": {
@@ -110,13 +110,13 @@
 			"age": {
 				"type": "integer"
 			},
-			"birth_state": {
+			"birthState": {
 				"type": "keyword"
 			},
-			"drivers_lic": {
+			"driversLic": {
 				"type": "keyword"
 			},
-			"registration_date": {
+			"registrationDate": {
 				"type": "date",
 				"format": "MM/dd/yyyy"
 			},
@@ -129,55 +129,103 @@
 			"ward": {
 				"type": "keyword"
 			},
-			"cong_dist": {
+			"congDist": {
 				"type": "keyword"
 			},
-			"super_court_dist": {
+			"superCourtDist": {
 				"type": "keyword"
 			},
-			"judic_dist": {
+			"judicDist": {
 				"type": "keyword"
 			},
-			"nc_senate_dist": {
+			"ncSenateDist": {
 				"type": "keyword"
 			},
-			"nc_house_dist": {
+			"ncHouseDist": {
 				"type": "keyword"
 			},
-			"county_commiss_dist": {
+			"countyCommissDist": {
 				"type": "keyword"
 			},
 			"township": {
 				"type": "keyword"
 			},
-			"boe_dist": {
+			"boeDist": {
 				"type": "keyword"
 			},
-			"fire_dist": {
+			"fireDist": {
 				"type": "keyword"
 			},
-			"water_dist": {
+			"waterDist": {
 				"type": "keyword"
 			},
-			"sewer_dist": {
+			"sewerDist": {
 				"type": "keyword"
 			},
-			"sanit_dist": {
+			"sanitDist": {
 				"type": "keyword"
 			},
-			"rescue_dist": {
+			"rescueDist": {
 				"type": "keyword"
 			},
-			"munic_dist": {
+			"municDist": {
 				"type": "keyword"
 			}
 		},
 		"subdivision": {
-			"ocd_type": {
+			"ocdType": {
 				"type": "keyword"
 			},
 			"geometry": {
 				"type": "geo_shape"
+			},
+			"chair": {
+				"type": "keyword"
+			},
+			"county": {
+				"type": "keyword"
+			},
+			"numberOfDelegates": {
+				"type": "integer"
+			},
+			"district": {
+				"type": "keyword"
+			},
+			"pollingPlace": {
+				"type": "keyword"
+			},
+			"secretary": {
+				"type": "keyword"
+			},
+			"status": {
+				"type": "keyword"
+			},
+			"fundGoal": {
+				"type": "float"
+			},
+			"viceChair": {
+				"type": "keyword"
+			},
+			"events": {
+				"properties": {
+					"location": {
+						"properties": {
+							"name": {
+								"type": "keyword"
+							},
+							"address": {
+								"type": "keyword"
+							}
+						}
+					},
+					"date": {
+						"type": "date",
+						"format": "E, M d, y at K:m a"
+					},
+					"title": {
+						"type": "keyword"
+					}
+				}
 			}
 		}
 	}
