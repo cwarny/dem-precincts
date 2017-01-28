@@ -6,6 +6,10 @@ This Elasticsearch-powered API provides a variety of endpoints to slice, dice, a
 * precincts data
 * electoral districts data
 
+## Prerequisites
+
+* [GNU Parallel](https://www.gnu.org/software/parallel/): `brew install parallel`
+
 ## Prepare data
 
 ### Voters
@@ -29,7 +33,9 @@ This Elasticsearch-powered API provides a variety of endpoints to slice, dice, a
 
 ## Load ES
 
-* `jq -c '{ index: { _index: "fellow", _type: "voter", _id: .regNum } },.' data/ncvoter92.ndjson > requests`
-* `jq -c '{ index: { _index: "fellow", _type: "precinct", _id: .ocdId } },.' data/wake-precincts-data-and-geo.ndjson >> data/requests`
-* `jq -c '{ index: { _index: "fellow", _type: "subdivision", _id: .ocdId } },.' data/wake-house.ndjson data/wake-senate.ndjson data/wake-commissioners.ndjson data/wake-congress.ndjson data/wake-superior.json >> data/requests`
-* `curl -s -XPOST localhost:9200/_bulk --data-binary "@data/requests"`
+1. Set up ES index: `curl -XPUT localhost:9200/fellow -d @api/esconfig.json`
+2. Prepare request:
+	* `jq -c '{ index: { _index: "fellow", _type: "voter", _id: .regNum } },.' data/ncvoter92.ndjson > data/requests`
+	* `jq -c '{ index: { _index: "fellow", _type: "precinct", _id: .ocdId } },.' data/wake-precincts-data-and-geo.ndjson >> data/requests`
+	* `jq -c '{ index: { _index: "fellow", _type: "subdivision", _id: .ocdId } },.' data/wake-house.ndjson data/wake-senate.ndjson data/wake-commissioners.ndjson data/wake-congress.ndjson data/wake-superior.json >> data/requests`
+3. Load: `cat data/requests | parallel --pipe -N1000 'curl -s -XPOST localhost:9200/_bulk --data-binary @-' >> data/bulk_results`

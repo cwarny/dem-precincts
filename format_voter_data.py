@@ -4,6 +4,13 @@ import json
 with open('data/ncvoter92.txt', encoding='ISO-8859-1') as infile, open('data/ncvoter92.ndjson','w') as outfile:
 	reader = csv.DictReader(infile, delimiter='\t')
 	for row in reader:
+		try:
+			a,b = row['precinct_abbrv'].split('-')
+		except ValueError as e:
+			pass
+
+		row = { k: ' '.join(v.strip().split()) for k,v in row.items() }
+
 		d = {
 			'county': {
 				'id': row['county_id'],
@@ -46,7 +53,7 @@ with open('data/ncvoter92.txt', encoding='ISO-8859-1') as infile, open('data/ncv
 			'birthState': row['birth_state'],
 			'driversLic': row['drivers_lic'],
 			'registrationDate': row['registr_dt'],
-			'precinct': row['precinct_desc'],
+			'precinct': 'ocd-division/country:us/state:nc/county:wake/precinct:%i-%s' % (int(a),b) if a else '',
 			'municipality': row['municipality_desc'],
 			'ward': row['ward_desc'],
 			'cong': 'ocd-division/country:us/state:nc/cd:%i' % int(row['cong_dist_abbrv']) if row['cong_dist_abbrv'] else '',

@@ -166,7 +166,7 @@
 				"chair": {
 					"type": "keyword"
 				},
-				"county": {
+				"countyName": {
 					"type": "keyword"
 				},
 				"numberOfDelegates": {
@@ -181,7 +181,7 @@
 				"secretary": {
 					"type": "keyword"
 				},
-				"status": {
+				"organizationStatus": {
 					"type": "keyword"
 				},
 				"fundGoal": {
@@ -204,7 +204,7 @@
 						},
 						"date": {
 							"type": "date",
-							"format": "E, M d, y at K:m a"
+							"format": "E, M d, y, K:m a"
 						},
 						"title": {
 							"type": "keyword"

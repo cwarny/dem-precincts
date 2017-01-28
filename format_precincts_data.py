@@ -9,10 +9,10 @@ with open('data/precincts_data.ndjson') as infile, open('data/precincts_data_for
 
 		if jsn['Status'] == 'UNORGANIZED':
 			d = {
-				'county': jsn['County'],
+				'countyName': jsn['County'],
 				'district': jsn['District'],
 				'pollingPlace': jsn['Polling location name'],
-				'status': jsn['Status'],
+				'organizationStatus': jsn['Status'],
 				'code': jsn['code'],
 				'ocdType': 'precinct',
 				'ocdId': 'ocd-division/country:us/state:nc/county:wake/precinct:%i-%s' % (int(a), b)
@@ -20,12 +20,12 @@ with open('data/precincts_data.ndjson') as infile, open('data/precincts_data_for
 		else:
 			d = {
 				'chair': jsn['Chair'],
-				'county': jsn['County'],
+				'countyName': jsn['County'],
 				'numberOfDelegates': jsn['Delegates'],
 				'district': jsn['District'],
 				'pollingPlace': jsn['Polling location name'],
 				'secretary': jsn['Secretary'],
-				'status': jsn['Status'],
+				'organizationStatus': jsn['Status'],
 				'fundGoal': jsn['Sustaining fund goal'],
 				'viceChair': jsn['Vice chair'],
 				'code': jsn['code'],
@@ -53,7 +53,7 @@ with open('data/precincts_data.ndjson') as infile, open('data/precincts_data_for
 						'address': e['Location'].split('\n')[2]
 					},
 					'title': e['Event'],
-					'date': e['Date']
+					'date': sub(r' at ', ', ', e['Date'])
 				}
 				for e in jsn['events']
 			]
