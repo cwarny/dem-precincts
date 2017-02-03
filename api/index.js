@@ -4,7 +4,7 @@ const config = require('./config'),
 
 require('./middleware')(app);
 
-app.use('/api', require('./auth').decodeToken(), require('./api'));
+app.use('/api', /*require('./auth').decodeToken(),*/ require('./api'));
 app.use('/auth', require('./auth/routes'));
 
 app.use(require('./middleware/err')());

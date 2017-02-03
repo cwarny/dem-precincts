@@ -1,25 +1,34 @@
 const es = require('../../util/es');
 
-exports get = (req, res, next) => {
-	var filter = req.query.filter;
-
-	es.search({
-		index: 'fellow',
-		type: 'subdivision',
-		body: {
-			query: {
-				bool: {
-					must: {
-						match_all: {}
-					}
+exports.get = (options) => {
+	let filters = [];
+	
+	let requestBody = {
+		query: {
+			bool: {
+				must: {
+					match_all: {}
 				}
 			}
 		}
-	}, (err, resp) => {
-		if (err) {
-			next(err);
-		} else {
-			res.send(resp);
-		}
+	};
+
+	if (filters.length) requestBody.query.bool.filter = filters;
+
+	return es.search({
+		index: 'fellow',
+		type: 'subdivision',
+		body: requestBody
+	}).then(resp => {
+		return {
+			meta: {
+				total: resp.hits.total
+			},
+			data: resp.hits.hits.map(d => ({
+				id: d._id,
+				type: 'subdivisions',
+				attributes: d._source
+			}))
+		};
 	});
 };

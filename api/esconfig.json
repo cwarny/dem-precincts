@@ -13,7 +13,7 @@
 						}
 					}
 				},
-				"regNum": {
+				"reg-num": {
 					"type": "keyword"
 				},
 				"status": {
@@ -94,7 +94,7 @@
 						}
 					}
 				},
-				"phoneNumber": {
+				"phone-number": {
 					"type": "keyword"
 				},
 				"race": {
@@ -112,13 +112,13 @@
 				"age": {
 					"type": "integer"
 				},
-				"birthState": {
+				"birth-state": {
 					"type": "keyword"
 				},
-				"driversLic": {
+				"drivers-lic": {
 					"type": "keyword"
 				},
-				"registrationDate": {
+				"registration-date": {
 					"type": "date",
 					"format": "MM/dd/yyyy"
 				},
@@ -134,7 +134,7 @@
 				"cong": {
 					"type": "keyword"
 				},
-				"superCourt": {
+				"super-court": {
 					"type": "keyword"
 				},
 				"judic": {
@@ -157,7 +157,7 @@
 		"precinct": {
 			"_all": { "enabled": false },
 			"properties": {
-				"ocdType": {
+				"ocd-type": {
 					"type": "keyword"
 				},
 				"geometry": {
@@ -166,28 +166,28 @@
 				"chair": {
 					"type": "keyword"
 				},
-				"countyName": {
+				"county-name": {
 					"type": "keyword"
 				},
-				"numberOfDelegates": {
+				"number-of-delegates": {
 					"type": "integer"
 				},
 				"district": {
 					"type": "keyword"
 				},
-				"pollingPlace": {
+				"polling-place": {
 					"type": "keyword"
 				},
 				"secretary": {
 					"type": "keyword"
 				},
-				"organizationStatus": {
+				"organization-status": {
 					"type": "keyword"
 				},
-				"fundGoal": {
+				"fund-goal": {
 					"type": "float"
 				},
-				"viceChair": {
+				"vice-chair": {
 					"type": "keyword"
 				},
 				"events": {
@@ -204,7 +204,7 @@
 						},
 						"date": {
 							"type": "date",
-							"format": "E, M d, y, K:m a"
+							"format": "EEEE, MMM dd, yyyy, KK:mm aa"
 						},
 						"title": {
 							"type": "keyword"
@@ -216,7 +216,7 @@
 		"subdivision": {
 			"_all": { "enabled": false },
 			"properties": {
-				"ocdType": {
+				"ocd-type": {
 					"type": "keyword"
 				},
 				"geometry": {

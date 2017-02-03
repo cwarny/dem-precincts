@@ -5,4 +5,7 @@ const router = require('express').Router(),
 router.route('/')
 	.get(toHTTP(controller.get));
 
+router.route('/:precinct_id')
+	.get(toHTTP(controller.getOne));
+
 module.exports = router;
