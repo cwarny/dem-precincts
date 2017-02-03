@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
-const { computed, get, getProperties, setProperties } = Ember;
+const { computed, get, getProperties, setProperties, run } = Ember;
+
+const { schedule } = run;
 
 /* global d3 */
 
@@ -16,9 +18,22 @@ export default Ember.Component.extend({
 		return `0 0 ${width} ${height}`;
 	}),
 
-	path: computed('width', 'height', function() {
-		let { width, height } = getProperties(this, 'width', 'height');
-		return d3.geoPath();
+	scale: null,
+	translate: null,
+	p: null,
+	origin: [-73.985130, 40.758896],
+
+	pi: Math.PI,
+    tau: computed(function() {
+    	return 2 * get(this, 'pi');
+    }),
+
+    zoom: computed(function() {
+		return d3.zoom()
+			.scaleExtent([1 << 11, 1 << 25])
+			.on('zoom', () => {
+				this.zoomed();
+			});
 	}),
 
 	shapes: computed('path', 'data', function() {
@@ -27,5 +42,92 @@ export default Ember.Component.extend({
 			path: path(get(d, 'geometry')),
 			props: d
 		}));
-	})
+	}),
+
+	init() {
+    	this._super(...arguments);
+
+    	let { width, height, tau, data, origin } = getProperties(this, 'width', 'height', 'tau', 'data', 'origin');
+
+    	let projection = d3.geoMercator()
+		    .scale(1 / tau)
+		    .translate([0, 0]);
+
+		let path = d3.geoPath()
+    		.projection(projection);
+
+    	let tile = d3.tile()
+    		.size([width, height]);
+
+    	let center = projection(origin);
+
+    	let transform = d3.zoomIdentity
+			.translate(width / 2, height / 2)
+			.scale(1 << 21)
+			.translate(-center[0], -center[1]);
+
+    	projection
+			.scale(transform.k / tau)
+			.translate([transform.x, transform.y]);
+
+		setProperties(this, {
+			projection: projection,
+			path: path,
+			tile: tile,
+			center: center
+		});
+    },
+
+    didInsertElement() {
+    	let { zoom, element, width, height, center } = getProperties(this, 'zoom', 'element', 'width', 'height', 'center');
+
+		d3.select(element)
+			.call(zoom)
+			.call(zoom.transform, d3.zoomIdentity
+				.translate(width / 2, height / 2)
+				.scale(1 << 21)
+				.translate(-center[0], -center[1])
+			);
+    },
+
+    stringify: function(scale, translate) {
+		let k = scale / 256, r = scale % 1 ? Number : Math.round;
+		return `translate(${r(translate[0] * scale)},${r(translate[1] * scale)})scale(${k})`;
+	},
+
+	zoomed: function() {
+		let { tile, tau, element, projection } = getProperties(this, 'tile', 'tau', 'element', 'projection');
+		
+		let transform = d3.event.transform;
+
+		let tiles = tile
+			.scale(transform.k)
+			.translate([transform.x, transform.y])
+			();
+
+		projection
+			.scale(transform.k / tau)
+			.translate([transform.x, transform.y]);
+
+		schedule('render', () => {
+			let image = d3.select(element).select('.raster')
+				.attr('transform', this.stringify(tiles.scale, tiles.translate))
+				.selectAll('image')
+				.data(tiles, d => d);
+
+			image.exit().remove();
+
+			image.enter().append('image')
+				.attr('xlink:href', d => `http://${'abc'[d[1] % 3]}.tile.openstreetmap.org/${d[2]}/${d[0]}/${d[1]}.png`)
+				.attr('x', d => d[0] * 256)
+				.attr('y', d => d[1] * 256)
+				.attr('width', 256)
+				.attr('height', 256);
+		});
+
+		setProperties(this, {
+			scale: projection.scale(),
+			translate: projection.translate()
+		});
+	}
 });
