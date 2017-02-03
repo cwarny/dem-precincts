@@ -9,28 +9,28 @@ with open('data/precincts_data.ndjson') as infile, open('data/precincts_data_for
 
 		if jsn['Status'] == 'UNORGANIZED':
 			d = {
-				'countyName': jsn['County'],
+				'county-name': jsn['County'],
 				'district': jsn['District'],
-				'pollingPlace': jsn['Polling location name'],
-				'organizationStatus': jsn['Status'],
+				'polling-place': jsn['Polling location name'],
+				'organization-status': jsn['Status'],
 				'code': jsn['code'],
-				'ocdType': 'precinct',
-				'ocdId': 'ocd-division/country:us/state:nc/county:wake/precinct:%i-%s' % (int(a), b)
+				'ocd-type': 'precinct',
+				'ocd-id': 'ocd-division/country:us/state:nc/county:wake/precinct:%i-%s' % (int(a), b)
 			}
 		else:
 			d = {
 				'chair': jsn['Chair'],
-				'countyName': jsn['County'],
-				'numberOfDelegates': jsn['Delegates'],
+				'county-name': jsn['County'],
+				'number-of-delegates': jsn['Delegates'],
 				'district': jsn['District'],
-				'pollingPlace': jsn['Polling location name'],
+				'polling-place': jsn['Polling location name'],
 				'secretary': jsn['Secretary'],
-				'organizationStatus': jsn['Status'],
-				'fundGoal': jsn['Sustaining fund goal'],
-				'viceChair': jsn['Vice chair'],
+				'organization-status': jsn['Status'],
+				'fund-goal': jsn['Sustaining fund goal'],
+				'vice-chair': jsn['Vice chair'],
 				'code': jsn['code'],
-				'ocdType': 'precinct',
-				'ocdId': 'ocd-division/country:us/state:nc/county:wake/precinct:%i-%s' % (int(a), b)
+				'ocd-type': 'precinct',
+				'ocd-id': 'ocd-division/country:us/state:nc/county:wake/precinct:%i-%s' % (int(a), b)
 			}
 
 			d = {
@@ -39,11 +39,11 @@ with open('data/precincts_data.ndjson') as infile, open('data/precincts_data_for
 				if v != 'TBD'
 			}
 
-			if 'numberOfDelegates' in d:
-				d['numberOfDelegates'] = int(d['numberOfDelegates'])
+			if 'number-of-delegates' in d:
+				d['number-of-delegates'] = int(d['number-of-delegates'])
 
-			if 'fundGoal' in d:
-				d['fundGoal'] = float(sub(r'[^\d.]', '', d['fundGoal']))
+			if 'fund-goal' in d:
+				d['fund-goal'] = float(sub(r'[^\d.]', '', d['fund-goal']))
 
 		if 'events' in jsn and jsn['events']:
 			d['events'] = [

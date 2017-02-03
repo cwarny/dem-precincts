@@ -16,7 +16,7 @@ with open('data/ncvoter92.txt', encoding='ISO-8859-1') as infile, open('data/ncv
 				'id': row['county_id'],
 				'name': row['county_desc']
 			},
-			'regNum': row['voter_reg_num'],
+			'reg-num': row['voter_reg_num'],
 			'status': {
 				'name': row['voter_status_desc'],
 				'reason': row['voter_status_reason_desc']
@@ -44,20 +44,20 @@ with open('data/ncvoter92.txt', encoding='ISO-8859-1') as infile, open('data/ncv
 					'zip': row['mail_zipcode']
 				}
 			},
-			'phoneNumber': row['full_phone_number'],
+			'phone-number': row['full_phone_number'],
 			'race': row['race_code'],
 			'ethnicity': row['ethnic_code'],
 			'party': row['party_cd'],
 			'gender': row['gender_code'],
 			'age': int(row['birth_age']) if row['birth_age'] else '',
-			'birthState': row['birth_state'],
-			'driversLic': row['drivers_lic'],
-			'registrationDate': row['registr_dt'],
+			'birth-state': row['birth_state'],
+			'drivers-lic': row['drivers_lic'],
+			'registration-date': row['registr_dt'],
 			'precinct': 'ocd-division/country:us/state:nc/county:wake/precinct:%i-%s' % (int(a),b) if a else '',
 			'municipality': row['municipality_desc'],
 			'ward': row['ward_desc'],
 			'cong': 'ocd-division/country:us/state:nc/cd:%i' % int(row['cong_dist_abbrv']) if row['cong_dist_abbrv'] else '',
-			'superCourt': 'ocd-division/country:us/state:nc/cd:%s' % row['super_court_abbrv'] if row['super_court_abbrv'] else '',
+			'super-court': 'ocd-division/country:us/state:nc/cd:%s' % row['super_court_abbrv'] if row['super_court_abbrv'] else '',
 			'judic': row['judic_dist_abbrv'],
 			'senate': 'ocd-division/country:us/state:nc/sldu:%i' % int(row['nc_senate_abbrv']) if row['nc_senate_abbrv'] else '',
 			'house': 'ocd-division/country:us/state:nc/sldl:%i' % int(row['nc_house_abbrv']) if row['nc_house_abbrv'] else '',
