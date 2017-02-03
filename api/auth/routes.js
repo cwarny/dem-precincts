@@ -1,6 +1,7 @@
 const router = require('express').Router(),
-	controller = require('./controller');
+	controller = require('./controller'),
+	toHTTP = require('../util/to-http');
 
-router.post('/signin', controller.signin);
+router.post('/signin', toHTTP(controller.signin));
 
 module.exports = router;

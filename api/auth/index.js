@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken'),
 	config = require('../config'),
 	expressJwt = require('express-jwt'),
 	checkToken = expressJwt({secret: config.secrets.jwt, requestProperty: 'auth'}),
-	request = require('request'),
 	crypto = require('crypto');
 
 exports.decodeToken = () => {

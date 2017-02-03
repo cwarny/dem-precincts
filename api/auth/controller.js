@@ -1,11 +1,11 @@
 const signToken = require('./index').signToken,
 	config = require('../config');
 
-exports.signinf = (req, res, next) => {
-	const username = req.body.username,
-		password = req.body.password;
+exports.signin = options => {
+	const username = options.body.username,
+		password = options.body.password;
 
 	// Do some validation
-
-	res.send({access_token: 'blah'});
+	
+	return { access_token: 'blah' };
 };

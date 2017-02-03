@@ -1,8 +1,8 @@
 const router = require('express').Router(),
-	controller = require('./controller');
+	controller = require('./controller'),
+	toHTTP = require('../../util/to-http');
 
 router.route('/')
-	.get(controller.get);
+	.get(toHTTP(controller.get));
 
-router.route('/:voter_id')
-	.get(controller.getOne);
+module.exports = router;
