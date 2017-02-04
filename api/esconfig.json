@@ -221,6 +221,9 @@
 				},
 				"geometry": {
 					"type": "geo_shape"
+				},
+				"properties": {
+					"enabled": false
 				}
 			}
 		}

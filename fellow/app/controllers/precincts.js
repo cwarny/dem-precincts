@@ -1,8 +1,13 @@
 import Ember from 'ember';
 
-let { computed, get, set, A, getProperties, setProperties, observer } = Ember;
+let { computed, get, set, getProperties, setProperties } = Ember;
 
 export default Ember.Controller.extend({
+	queryParams: ['subdivisionType'],
+
+	subdivisionType: 'cd',
+	subdivisionTypes: ['cd','council_district','sldl','sldu'],
+
 	actions: {
 		highlight(precinct) {
 			set(this, 'highlighted', precinct);

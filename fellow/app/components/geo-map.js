@@ -36,9 +36,9 @@ export default Ember.Component.extend({
 			});
 	}),
 
-	shapes: computed('path', 'data', function() {
-		let { path, data } = getProperties(this, 'path', 'data');
-		return data.map(d => ({
+	shapes: computed('path', 'precincts', function() {
+		let { path, precincts } = getProperties(this, 'path', 'precincts');
+		return precincts.map(d => ({
 			path: path(get(d, 'geometry')),
 			props: d
 		}));
@@ -47,7 +47,7 @@ export default Ember.Component.extend({
 	init() {
     	this._super(...arguments);
 
-    	let { width, height, tau, data, origin } = getProperties(this, 'width', 'height', 'tau', 'data', 'origin');
+    	let { width, height, tau, origin } = getProperties(this, 'width', 'height', 'tau', 'origin');
 
     	let projection = d3.geoMercator()
 		    .scale(1 / tau)

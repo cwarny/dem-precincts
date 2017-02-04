@@ -7,11 +7,7 @@
 	<hr>
 	<div class="row">
 		<div class="col-xs-12">
-			{{geo-map data=model
-				onhighlight=(action 'highlight')
-				ondehighlight=(action 'dehighlight')
-				onselect=(action 'select')
-				ondeselect=(action 'deselect')}}
+			{{outlet}}
 		</div>	
 	</div>
 </div>
