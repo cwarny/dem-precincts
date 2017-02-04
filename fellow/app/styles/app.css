@@ -20,10 +20,11 @@ path.precinct.highlighted {
 path.entity {
 	stroke: white;
 	fill: #cccccc;
-	stroke-width: 0.1px;
+	stroke-width: .5px;
+	opacity: .7;
 }
 
 path.entity.highlighted {
 	stroke: red;
-	stroke-width: 1px;
+	stroke-width: 5px;
 }

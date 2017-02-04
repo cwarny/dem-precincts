@@ -1,5 +1,4 @@
-const _ = require('lodash'),
-	fs = require('fs');
+const _ = require('lodash');
 
 let config = {
 	dev: 'development',
@@ -9,10 +8,6 @@ let config = {
 	expireTime: 10 * 24 * 60 * 60,
 	secrets: {
 		jwt: process.env.JWT || 'supersecretkey'
-	},
-	credentials: {
-		key: fs.readFileSync(process.env.HTTPS_KEY_PATH),
-		cert: fs.readFileSync(process.env.HTTPS_CERT_PATH)
 	}
 };
 

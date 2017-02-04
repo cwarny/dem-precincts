@@ -1,7 +1,7 @@
 <g class="raster"></g>
-<path class="vector" d={{path}}></path>
-{{!-- <g>
-	{{#each shapes as |shape|}}
+{{!-- <path class="vector" d={{path}}></path> --}}
+<g>
+	{{#each precinctShapes as |shape|}}
 		{{precinct-shape d=shape.path 
 			entity=shape.props
 			onhighlight=onhighlight
@@ -9,4 +9,4 @@
 			onselect=onselect
 			ondeselect=ondeselect}}
 	{{/each}}
-</g> --}}
+</g>

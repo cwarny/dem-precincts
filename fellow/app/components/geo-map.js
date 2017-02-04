@@ -12,7 +12,7 @@ export default Ember.Component.extend({
 	classNames: ['geo-map'],
 
 	width: 2000,
-	height: 2000,
+	height: 1700,
 	viewBox: computed('width', 'height', function() {
 		let { width, height } = getProperties(this, 'width', 'height');
 		return `0 0 ${width} ${height}`;
@@ -21,7 +21,7 @@ export default Ember.Component.extend({
 	scale: null,
 	translate: null,
 	p: null,
-	origin: [-73.985130, 40.758896],
+	origin: [-78.644257, 35.787743],
 
 	pi: Math.PI,
     tau: computed(function() {
@@ -36,12 +36,20 @@ export default Ember.Component.extend({
 			});
 	}),
 
-	shapes: computed('path', 'precincts', function() {
+	path: computed('projection', 'translate', 'scale', function() {
+		let { scale, translate, projection } = getProperties(this, 'scale', 'translate', 'projection');
+		projection.scale(scale).translate(translate);
+		return d3.geoPath().projection(projection);
+	}),
+
+	precinctShapes: computed('path', 'precincts', function() {
 		let { path, precincts } = getProperties(this, 'path', 'precincts');
-		return precincts.map(d => ({
-			path: path(get(d, 'geometry')),
-			props: d
-		}));
+		return precincts.map(d => {
+			return {
+				path: path(get(d, 'geometry')),
+				props: d
+			};
+		});
 	}),
 
 	init() {
@@ -52,9 +60,6 @@ export default Ember.Component.extend({
     	let projection = d3.geoMercator()
 		    .scale(1 / tau)
 		    .translate([0, 0]);
-
-		let path = d3.geoPath()
-    		.projection(projection);
 
     	let tile = d3.tile()
     		.size([width, height]);
@@ -72,9 +77,10 @@ export default Ember.Component.extend({
 
 		setProperties(this, {
 			projection: projection,
-			path: path,
 			tile: tile,
-			center: center
+			center: center,
+			translate: projection.translate(),
+			scale: projection.scale()
 		});
     },
 
@@ -85,7 +91,7 @@ export default Ember.Component.extend({
 			.call(zoom)
 			.call(zoom.transform, d3.zoomIdentity
 				.translate(width / 2, height / 2)
-				.scale(1 << 21)
+				.scale(1 << 19)
 				.translate(-center[0], -center[1])
 			);
     },

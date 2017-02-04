@@ -26,7 +26,10 @@ You will need the following things properly installed on your computer.
 	* `curl -L https://github.com/topojson/topojson-client/releases/download/v2.1.0/topojson-client.zip -o bower_components/topojson-client.zip`
 	* `unzip bower_components/topojson-client.zip -d bower_components/topojson-client`
 	* `rm bower_components/topojson-client.zip`
-* `cp ../data/wake-quantized-topo.json public`
+* [d3-tile]()
+	* `curl -L https://github.com/d3/d3-tile/releases/download/v0.0.3/d3-tile.zip -o bower_components/d3-tile.zip`
+	* `unzip bower_components/d3-tile.zip -d bower_components/d3-tile`
+	* `rm bower_components/d3-tile.zip`
 
 ## Running / Development
 
