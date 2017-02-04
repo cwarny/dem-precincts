@@ -7,6 +7,7 @@ exports.get = (options) => {
 		index: 'fellow',
 		type: 'precinct',
 		body: {
+			size: 250,
 			query: {
 				bool: {
 					must: {

@@ -11,6 +11,9 @@ bower_components
 # data
 data
 
+# env variables
+.env
+
 # misc
 .sass-cache
 connect.lock

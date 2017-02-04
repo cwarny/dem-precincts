@@ -1,6 +1,7 @@
-const _ = require('lodash');
+const _ = require('lodash'),
+	fs = require('fs');
 
-var config = {
+let config = {
 	dev: 'development',
 	test: 'testing',
 	prod: 'production',
@@ -8,6 +9,10 @@ var config = {
 	expireTime: 10 * 24 * 60 * 60,
 	secrets: {
 		jwt: process.env.JWT || 'supersecretkey'
+	},
+	credentials: {
+		key: fs.readFileSync(process.env.HTTPS_KEY_PATH),
+		cert: fs.readFileSync(process.env.HTTPS_CERT_PATH)
 	}
 };
 
@@ -15,6 +20,6 @@ process.env.NODE_ENV = process.env.NODE_ENV || config.dev;
 
 config.env = process.env.NODE_ENV;
 
-var envConfig = require('./' + config.env);
+let envConfig = require('./' + config.env);
 
 module.exports = _.merge(config, envConfig);
