@@ -15,5 +15,11 @@ export default DS.Model.extend({
 	fundGoal: attr('number'),
 	viceChair: attr('string'),
 	events: hasMany('event'),
-	geometry: attr()
+	geometry: attr(),
+	ages: attr(),
+	ethnicities: attr(),
+	genders: attr(),
+	parties: attr(),
+	races: attr(),
+	registrations: attr()
 });

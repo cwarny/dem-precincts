@@ -1,12 +1,30 @@
 import Ember from 'ember';
 
-let { computed, get, set, getProperties, setProperties } = Ember;
+let { computed, get, set, getProperties, setProperties, A, inject } = Ember;
 
 export default Ember.Controller.extend({
-	queryParams: ['subdivisionType'],
+	queryParams: ['subdivisionType',{'selectedPrecincts':'codes'}],
 
 	subdivisionType: 'cd',
 	subdivisionTypes: ['cd','council_district','sldl','sldu'],
+
+	selected: computed({
+		get() {
+			return A([]);
+		},
+		set(key, value) {
+			return value;
+		}
+	}),
+
+	selectedPrecincts: computed('selected.[]', {
+		get() {
+			return get(this,'selected').mapBy('id');
+		},
+		set(key, value) {
+			return value;
+		}
+	}),
 
 	actions: {
 		highlight(precinct) {

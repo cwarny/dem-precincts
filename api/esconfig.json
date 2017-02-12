@@ -123,7 +123,14 @@
 					"format": "MM/dd/yyyy"
 				},
 				"precinct": {
-					"type": "keyword"
+					"properties": {
+						"code": {
+							"type": "keyword"
+						},
+						"ocd-id": {
+							"type": "keyword"
+						}
+					}
 				},
 				"municipality": {
 					"type": "keyword"

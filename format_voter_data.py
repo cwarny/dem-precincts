@@ -53,7 +53,10 @@ with open('data/ncvoter92.txt', encoding='ISO-8859-1') as infile, open('data/ncv
 			'birth-state': row['birth_state'],
 			'drivers-lic': row['drivers_lic'],
 			'registration-date': row['registr_dt'],
-			'precinct': 'ocd-division/country:us/state:nc/county:wake/precinct:%i-%s' % (int(a),b) if a else '',
+			'precinct': {
+				'ocd-id': 'ocd-division/country:us/state:nc/county:wake/precinct:%i-%s' % (int(a),b) if a else '',
+				'code': '-'.join([a,b]) if a else ''
+			},
 			'municipality': row['municipality_desc'],
 			'ward': row['ward_desc'],
 			'cong': 'ocd-division/country:us/state:nc/cd:%i' % int(row['cong_dist_abbrv']) if row['cong_dist_abbrv'] else '',

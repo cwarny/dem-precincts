@@ -6,4 +6,11 @@
 			onselect=(action 'select')
 			ondeselect=(action 'deselect')}}
 	</div>
+	<div class="col-xs-6">
+		<ul>
+			{{#each selected as |precinct|}}
+				<li>{{precinct.code}}</li>
+			{{/each}}
+		</ul>
+	</div>
 </div>

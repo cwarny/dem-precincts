@@ -24,6 +24,7 @@ module.exports = function(defaults) {
   app.import('bower_components/d3-geo/d3-geo.min.js');
   app.import('bower_components/d3-tile/d3-tile.min.js');
   app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
+  app.import('bower_components/lodash/dist/lodash.min.js');
 
   app.import('bower_components/bootstrap/dist/css/bootstrap.min.css');
   app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff', { destDir: 'fonts' });

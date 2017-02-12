@@ -6,8 +6,8 @@ const { oneWay } = computed;
 export default Ember.Component.extend({
 	tagName: 'path',
 	attributeBindings: ['d', 'fill', 'style'],
-	classNames: ['entity'],
-	classNameBindings: ['highlighted'],
+	classNames: ['precinct','clickable'],
+	classNameBindings: ['highlighted','selected'],
 
 	highlighted: oneWay('entity.highlighted'),
 	selected: oneWay('entity.selected'),

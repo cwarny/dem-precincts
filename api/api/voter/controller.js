@@ -1,9 +1,7 @@
-const es = require('../../util/es');
+const es = require('../../util/es'),
+	_ = require('lodash');
 
 exports.get = (options) => {
-	let filter = options.query.filter,
-		precinct_id = filter.precinct_id;
-
 	let filters = [];
 
 	filters.push({
@@ -12,12 +10,49 @@ exports.get = (options) => {
 		}
 	});
 
-	let s = precinct_id.split('-');
-	filters.push({
-		term: {
-			precinct: `ocd-division/country:us/state:nc/county:wake/precinct:${[parseInt(s[0]),s[1]].join('-')}`
+	let subAggs = {
+		ages: {
+			terms: {
+				field: 'age'
+			}
+		},
+		genders: {
+			terms: {
+				field: 'gender'
+			}
+		},
+		races: {
+			terms: {
+				field: 'race'
+			}
+		},
+		ethnicities: {
+			terms: {
+				field: 'ethnicity'
+			}
+		},
+		parties: {
+			terms: {
+				field: 'party'
+			}
+		},
+		'registrations': {
+			date_histogram: {
+				field: 'registration-date',
+				interval: 'year'
+			}
 		}
-	});
+	};
+
+	let aggs = {
+		precincts: {
+			terms: {
+				field: 'precinct.code',
+				size: 250
+			},
+			aggs: subAggs
+		}
+	};
 
 	let requestBody = {
 		size: 0,
@@ -28,39 +63,7 @@ exports.get = (options) => {
 				}
 			}
 		},
-		aggs: {
-			ages: {
-				terms: {
-					field: 'age'
-				}
-			},
-			genders: {
-				terms: {
-					field: 'gender'
-				}
-			},
-			races: {
-				terms: {
-					field: 'race'
-				}
-			},
-			ethnicities: {
-				terms: {
-					field: 'ethnicity'
-				}
-			},
-			parties: {
-				terms: {
-					field: 'party'
-				}
-			},
-			'registrations': {
-				date_histogram: {
-					field: 'registration-date',
-					interval: 'year'
-				}
-			}
-		}
+		aggs: aggs
 	};
 
 	if (filters.length) requestBody.query.bool.filter = filters;
@@ -69,17 +72,15 @@ exports.get = (options) => {
 		index: 'fellow',
 		type: 'voter',
 		body: requestBody
-	}).then(resp => {
-		return {
-			meta: {
-				total: resp.hits.total,
-				aggregations: resp.aggregations
-			},
-			data: resp.hits.hits.map(d => ({
-				id: d._id,
-				type: 'voters',
-				attributes: d._source
-			}))
-		};
-	});
+	}).then(resp => ({
+		meta: {
+			total: resp.hits.total,
+			aggregations: resp.aggregations.precincts.buckets.map(p => _.merge({id: p.key}, _.mapValues(p, 'buckets')))
+		},
+		data: resp.hits.hits.map(d => ({
+			id: d._id,
+			type: 'voters',
+			attributes: d._source
+		}))
+	}));
 };

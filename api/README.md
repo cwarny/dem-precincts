@@ -233,3 +233,10 @@ All endpoints prefixed by `/api`.
 	]
 }
 ```
+
+## Deploy: Heroku
+
+* Create app on Heroku
+* In root directory: 
+	* `heroku git:remote -a APP_NAME`
+	* `git subtree push --prefix api heroku master`
